@@ -1,0 +1,16 @@
+<div style="margin-top: 15px;" *ngFor="let card of Cards">
+    <p-card class="cardStyle cardStyle1" [style]="{height: '100px', width:'100%'}" styleClass="shadow-2">
+        <img class="dashboardCardIcon" src="../../../../assets/img/prpr.png">
+        <div class="contentPlace">
+            <a class="CardHeadPara" [routerLink]="['/main/company/list']" target="_blank">Total Company Created</a><br>
+            <a class="CardHeadPara" [routerLink]="['/main/company/list']" target="_blank">{{ card.value }}</a>
+            <!-- <p>{{ card.value }}</p> -->
+        </div>
+        <ng-template pTemplate="footer">
+            <a class="dashboardCardFoo" [routerLink]="['/main/company/list', 'Recent']" target="_blank">
+                <!-- {{ card.category2}} -->
+                Recentely Company Created
+                <span> - {{ card.value1 }}</span></a>
+        </ng-template>
+    </p-card>
+</div>

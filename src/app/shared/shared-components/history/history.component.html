@@ -1,0 +1,34 @@
+<div>
+    <p-table [value]="data" styleClass="p-datatable-striped" responsiveLayout="scroll" [paginator]="true" [rows]="10" [totalRecords]="10" [rowsPerPageOptions]="[10,25,50]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [exportHeader]="'customExportHeader'">
+
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Sl No</th>
+                <th>Creation Date</th>
+                <th>Modified By</th>
+                <th>Modified Date</th>
+                <th>Context</th>
+                <th>Type</th>
+                <th>Field</th>
+                <th>Old Value</th>
+                <th>New Value</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item let-rowIndex="rowIndex">
+            <tr [pSelectableRow]="item" [pSelectableRowIndex]="rowIndex">
+                <td>
+                    {{ rowIndex + 1 }}
+                </td>
+                <td>{{ item.createdDate | date: 'MMM dd, yyyy' }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.lastModifiedDate | date: 'MMM dd, yyyy' }}</td>
+                <td>{{ item.moduleName }}</td>
+                <td>{{ item.operation }}</td>
+                <td>{{ item.fieldName }}</td>
+                <td>{{ item.oldValue }}</td>
+                <td>{{ item.newValue }}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

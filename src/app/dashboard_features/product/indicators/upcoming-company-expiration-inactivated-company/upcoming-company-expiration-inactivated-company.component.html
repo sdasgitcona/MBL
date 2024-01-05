@@ -1,0 +1,18 @@
+<div style="margin-top: 15px;" *ngFor="let card of Cards">
+    <p-card class="cardStyle cardStyle7" [style]="{height: '100px', width:'100%'}" styleClass="shadow-2">
+        <img class="dashboardCardIcon" src="../../../../assets/img/aging.png">
+        <div class="contentPlace">
+            <!-- <p class="CardHeadPara">Recently Created PO
+            </p>
+            <p>{{ card.value }}</p> -->
+            <a class="CardHeadPara" [routerLink]="['/main/company/list','Upcoming']" target="_blank">Upcoming Company Expiration</a><br>
+            <a class="CardHeadPara" [routerLink]="['/main/company/list','Upcoming']" target="_blank">{{ card.value }}</a>
+        </div>
+        <ng-template pTemplate="footer">
+            <a class="dashboardCardFoo" [routerLink]="['/main/company/list','Inactivated']" target="_blank">
+                <!-- {{ card.category2}} -->
+                Inactivated Company
+                <span> - {{ card.value1 }}</span></a>
+        </ng-template>
+    </p-card>
+</div>

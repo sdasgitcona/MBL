@@ -1,0 +1,13 @@
+<div class="col-sm-12" style="margin-top: 15px;" *ngFor="let card of Cards">
+    <p-card class="cardStyle cardStyle3" [style]="{height: '100px', width:'100%'}" styleClass="shadow-2">
+        <img class="dashboardCardIcon" src="../../../../assets/img/Bill.png">
+        <div class="contentPlace">
+            <p>{{ card.category }}</p>
+            <p>{{ card.value }}</p>
+        </div>
+        <ng-template pTemplate="footer">
+            <a class="dashboardCardFoo">{{ card.lowerCategory
+                }}<span> - {{ card.lowerValue }}</span></a>
+        </ng-template>
+    </p-card>
+</div>

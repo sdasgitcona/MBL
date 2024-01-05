@@ -1,0 +1,244 @@
+<div class="ng-header">
+    <div class="ng-header-left left">
+        <div class="toggle-menu-button left"></div>
+        <div class="logo right logoright">
+            <!-- <h2 class="logo mr-auto" style="margin-top: 5px;"><a style="color: #464A4D;">Monstarbill : : </a></h2> -->
+            <a class="logo mr-auto" href="#"><img src="../../../../../assets/cimages/logoDark.png" ></a>
+            
+        </div>
+    </div>
+    <div class="ng-header-right right">
+        <div class="ng-header-right-item right" style="margin-top: 2px; margin-right: 5px;">
+            <p-splitButton label="{{user?.subsidiaryName}}" [model]="this.items" styleClass="p-button-text p-button-secondary topbarSplitBtn"></p-splitButton>
+        </div>
+
+        <div class="ng-header-right-item right" style="margin-top: 2px; margin-left: 8px;">
+            <p-avatar image="{{user?.image}}" pBadge  severity="success" styleClass="p-mt-2" size="large" class="userBage"></p-avatar>
+            <!-- ../../assets/cimages/amyelsner.png -->
+           <!-- <p-splitButton label=" {{user?.subsidiaryName}}" icon="../assets/images/login/Logo.png" [model]="this.items" styleClass="p-button-rounded p-button-raised p-button-info p-button-text mr-2 mb-2 topAdmBtn" (onClick)="userdetails.toggle($event)"></p-splitButton> -->
+        </div>
+        
+
+        
+        <!--Start Custom Menu-->
+        <div class="ng-header-right-item right" style="margin-top: 8px;border-right: 1px solid #b6babd; border-top-right-radius: 0px !important; border-bottom-right-radius: 0px !important; padding-right: 8px;">
+            <button pButton pRipple type="button" icon="pi pi-cog" class="p-button-rounded p-button-text" (click)="Setupmenu.toggle($event)"></button>
+        </div>
+        <div class="ng-header-right-item right" style="margin-top: 8px;margin-right: 5px;">
+            <button pButton pRipple type="button" icon="pi pi-building" class="p-button-rounded p-button-text" (click)="Mastermenu.toggle($event)"></button>
+        </div>
+        <div class="ng-header-right-item right" style="margin-top: 8px;margin-right: 5px;">
+            <button pButton pRipple type="button" class="p-button-rounded p-button-text" style="border-right: 1px solid #b6babd; border-top-right-radius: 0px !important; border-bottom-right-radius: 0px !important;">
+                <i class="pi pi-bell p-mr-4 p-text-secondary" pBadge value="2" severity="danger"></i>
+            </button>
+        </div>
+        <div class="ng-header-right-item right" style="margin-top: 8px; display: inline-flex;">
+            <!-- <h6 style="margin: 15px;">Complete Setup (1/3)</h6> -->
+            <div class="circular-progress">
+                <div class="value-container">
+                    <button pButton pRipple type="button" icon="pi pi-window-maximize" class="p-button-rounded p-button-text" (click)="showPositionDialog('top-right')"></button>
+                </div>
+            </div>
+            
+        </div>
+        <!--End Custom Menu-->
+        <div class="ng-header-right-item right" style="margin-top: 2px;" *ngIf="false">
+            <p-splitButton label="Subsidiary: {{user?.subsidiaryName}}"  icon="fa fa-building" [model]="this.subsidiaryList" styleClass="p-button-rounded p-button-raised p-button-info p-button-text mr-2 mb-2 topAdmBtn" ></p-splitButton>
+        </div>
+    </div>
+</div>
+
+<!-- user detials overlay panel -->
+<!-- <p-overlayPanel #userdetails>
+    <div><b>User Name: </b><i [innerHtml]="user?.username"></i></div>
+    <div><b>Role: </b><i [innerHtml]="user?.departmentName"></i></div>
+    <div *ngIf="user?.subsidiaryName!==null"><b>Subsidiary: </b><i [innerHtml]="user?.subsidiaryName"></i></div>
+</p-overlayPanel> -->
+
+
+<p-menu #Mastermenu [popup]="true" [model]="cstmMasterMenu" class="topmenuOverlay"></p-menu>
+<p-menu #Setupmenu [popup]="true" [model]="cstmSetupMenu" class="topmenuOverlay"></p-menu>
+
+
+<!-- Setup Dialog -->
+<p-dialog header="Set Up" [(visible)]="displayPosition" position="top-right" [modal]="true" [style]="{width: '60vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false" class="setUpDialog">
+    <p-steps [model]="setupItems" [(activeIndex)]="activeIndex"></p-steps>
+
+    <!-- Step 1 -->
+    <div activeIndex="0" *ngIf="step1">
+        <div class="row">
+            <div class="col-sm-4 p-field setupF">
+                <label for="textCompanyName" class="inputLabel">Company Name</label>
+                <input type="text" id="textCompanyName" [(ngModel)]="StepOne.companyName" pInputText placeholder="Company Name">
+            </div>
+            <div class="col-sm-4 p-field setupF">
+                <label for="txtCountry" class="inputLabel">Country</label>
+                <p-dropdown id="txtCountry" [options]="countries" (onChange)="GetStateList($event)" optionLabel="name" [filter]="true" optionLabel="country" optionValue="country" placeholder="Please select Country" appendTo="body" [(ngModel)]="StepOne.country"></p-dropdown>
+            </div>
+            <div class="col-sm-4 p-field setupF">
+                <label for="txtState" class="inputLabel">State/Province</label>
+                <p-dropdown id="txtState" [options]="states" optionLabel="name" (onChange)="GetCityList($event)" [filter]="true"  optionLabel="state" optionValue="state" placeholder="Please select State/Province" appendTo="body" [(ngModel)]="StepOne.state"></p-dropdown>
+            </div>
+            <div class="col-sm-4 p-field setupF">
+                <label for="txtCity" class="inputLabel">City</label>
+                <p-dropdown id="txtCity" [options]="cities" optionLabel="name" [filter]="true" optionValue="city" optionLabel="city" placeholder="Please select City" appendTo="body" [(ngModel)]="StepOne.city"></p-dropdown>
+            </div>
+            <div class="col-sm-4 p-field setupF">
+                <label for="textpoCode" class="inputLabel">PO Code</label>
+                <input type="text" id="textpoCode"  type="text" pInputText placeholder="PO Code" style="width: 99%;" [(ngModel)]="StepOne.poCode">
+            </div>
+            <div class="col-sm-6 p-field setupF">
+                <label for="txtCity" class="inputLabel">Office Address</label>
+                <textarea pInputTextarea placeholder="Address Line 1" [(ngModel)]="StepOne.address1"></textarea>
+            </div>
+            <div class="col-sm-6 p-field setupF" style="margin-top: 45px;">
+                <textarea pInputTextarea placeholder="Address Line 2" [(ngModel)]="StepOne.address2"></textarea>
+            </div>
+            <div class="col-sm-4 p-field setupF">
+                <label for="txtyear" class="inputLabel">Fiscale Calender</label>
+                <p-dropdown id="txtyear" [options]="Fiscaleyear" optionLabel="id"  optionValue="value" [filter]="true" optionValue="id" placeholder="Start year" appendTo="body" [(ngModel)]="StepOne.startYear"></p-dropdown>
+            </div>
+            <div class="col-sm-4 p-field setupF">
+                <label for="txtCity" class="inputLabel"> &nbsp;</label>
+                <p-dropdown id="txtCity" [options]="Fiscalemonth"  optionLabel="id"  optionValue="value" [filter]="true" optionValue="id" placeholder="Start Month" appendTo="body" [(ngModel)]="StepOne.startMonth"></p-dropdown>
+            </div>
+            <div class="col-sm-4 p-field setupF">
+                <label for="txtCity" class="inputLabel"> &nbsp;</label>
+                <p-dropdown id="txtCity" [options]="Fiscalemonth"  optionLabel="id"  optionValue="value" [filter]="true" optionValue="id" placeholder="End Month" appendTo="body" [(ngModel)]="StepOne.endMonth"></p-dropdown>
+            </div>
+            <div class="col-sm-12 p-field setupdialogChip">
+                <label for="txtbussinessUnit" class="inputLabel"> Bussiness Unit</label>
+                <p-chips [disabled]="false" [(ngModel)]="businessUnit" id="txtbussinessUnit" separator="," placeholder="Type here |" [allowDuplicate]="false" (onRemove)="removebUnit($event)">
+                    <ng-template let-bunit pTemplate="bunit">
+                      {{ bunit }}
+                    </ng-template>
+                  </p-chips>
+                <label>Press Enter or Add Comma after each Bussiness Unit</label>
+            </div>
+            <div class="col-sm-12 p-field setupdialogChip">
+                <label for="txtdepartment" class="inputLabel"> Departments</label>
+                <p-chips [disabled]="false" [(ngModel)]="department" id="txtdepartment" separator="," placeholder="Type here |" [allowDuplicate]="false" (onRemove)="removedept($event)">
+                    <ng-template let-dept pTemplate="dept">
+                      {{ dept }}
+                    </ng-template>
+                  </p-chips>
+                <label>Press Enter or Add Comma after each Department</label>
+            </div>
+        </div>
+
+        <div class="row" style="float:right;">
+            <div class="col-sm-12" style="height: 90px;">
+                <button pButton label="Skip" type="button" class="saveBtnBox" (click)="displayPosition=false" style="background-color: #475569;"></button>
+                <button pButton label="Next" type="button" class="saveBtnBox" (click)="next()"></button>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- Step 2 -->
+    <div class="row" activeIndex="1" *ngIf="step2">
+        <div class="col-sm-12 setupModuleTable" id="target">
+            <p-table [value]="Step_Two" selectionMode="single" [(selection)]="Step_Two" styleClass="p-datatable-striped" responsiveLayout="scroll" [paginator]="false" [style]="{'width':'100%'}">
+            
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th [style]="{ 'max-width': '12%'}">Type</th>
+                        <th [style]="{ 'max-width': '12%'}">Prefix</th>
+                        <th [style]="{ 'max-width': '12%'}">Suffix</th>
+                        <th [style]="{ 'max-width': '12%'}">Max Digit</th>
+                        <th [style]="{ 'max-width': '12%'}">Initial Number</th>
+                        <th [style]="{ 'max-width': '12%'}">Start Date</th>
+                        <th [style]="{ 'max-width': '12%'}">End Date</th>
+                        <th [style]="{ 'max-width': '12%'}">Status</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-attachment let-rowIndex="rowIndex">
+                    <tr [pSelectableRow]="Step_Two" [pSelectableRowIndex]="rowIndex">
+                        <td><p-dropdown class="subTabField" id="txtType" [options]="types" [filter]="true" placeholder="Please select Type" appendTo="body" [(ngModel)]="Step_Two[rowIndex].type"></p-dropdown></td>
+                        <td><input class="subTabField" placeholder="Prefix" type="text" pInputText  id="remarks" [(ngModel)]="Step_Two[rowIndex].prefix"></td>
+                        <td><input class="subTabField" placeholder="Suffix" type="text" pInputText  id="remarks" [(ngModel)]="Step_Two[rowIndex].suffix"></td>
+                        <td><input class="subTabField" placeholder="Max Digit" type="text" pInputText  id="remarks" [(ngModel)]="Step_Two[rowIndex].minimumDigit"></td>
+                        <td><input class="subTabField" placeholder="Initial Number" type="text" pInputText  id="remarks" [(ngModel)]="Step_Two[rowIndex].initialNumber"></td>
+                        <td><p-calendar class="subTabField" placeholder="Start Date" id="datePickerPrDate" [(ngModel)]="Step_Two[rowIndex].startDate" dateFormat="dd/mm/yy" appendTo="body"></p-calendar></td>
+                        <td><p-calendar class="subTabField" id="datePickerPrDate" placeholder="End Date"[(ngModel)]="Step_Two[rowIndex].endDate" dateFormat="dd/mm/yy" appendTo="body"></p-calendar></td>
+                        <td><p-inputSwitch [(ngModel)]="StepTwo.active"></p-inputSwitch></td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+        <div class="row" style="margin-top: 40px;">
+            <div class="col-sm-12">
+                <p-button label="Add" icon="pi pi-plus" styleClass="p-button-secondary addrowBtn" (onClick)="addstep2()" pTooltip="Add new" tooltipPosition="top" style="float:right;"></p-button>
+            </div>
+        </div>
+        <div class="row" style="text-align: end;">
+            <div class="col-sm-12" style="margin-top: 30px;float:right;">
+                <button pButton label="Skip" type="button" class="saveBtnBox" (click)="displayPosition=false" style="background-color: #475569;"></button>
+                <button pButton label="Next" type="button" class="saveBtnBox" (click)="next()"></button>
+            </div>
+        </div>
+    </div>
+ 
+   
+    <!-- Step 3 -->
+    <div activeIndex="2" *ngIf="step3">
+        <div class="row">
+            <div class="col-sm-2 p-field setupF">
+                <label for="textName" class="inputLabel">Name</label>
+                <input type="text" id="textName"  type="text" pInputText placeholder="Name" [(ngModel)]="StepThree.name">
+            </div>
+            <div class="col-sm-2 p-field setupF">
+                <label for="textEmail" class="inputLabel">Email</label>
+                <input type="text" id="textEmail"  type="text" pInputText placeholder="Email" [(ngModel)]="StepThree.email">
+            </div>
+            <div class="col-sm-2 p-field setupF">
+                <label for="txtBUnit" class="inputLabel">Bussiness Unit</label>
+                <p-dropdown id="txtBUnit" [options]="businessUnitStepThree"  [filter]="true"  placeholder="Bussiness Unit" appendTo="body" [(ngModel)]="StepThree.businessUnitId" optionLabel="Name"  optionValue="id"></p-dropdown>
+            </div>
+            <div class="col-sm-2 p-field setupF">
+                <label for="txtDepartmentDrop" class="inputLabel">Department</label>
+                <p-dropdown id="txtDepartmentDrop" [options]="departmentStepThree" [filter]="true" placeholder="Department" appendTo="body" [(ngModel)]="StepThree.departmentId" optionLabel="Name"  optionValue="id"></p-dropdown>
+            </div>
+            <div class="col-sm-2 p-field setupF">
+                <label for="txtRoll" class="inputLabel">Role</label>
+                <p-dropdown id="txtRoll" [options]="Role" [filter]="true" placeholder="Role" appendTo="body" [(ngModel)]="StepThree.roleId"  optionLabel="selectedAccess"  optionValue="id"></p-dropdown>
+            </div>
+            <div class="col-sm-2 p-field setupF">
+                <button pButton label="Send Invite" type="button" class="filterBoxBtn" style="margin-top: 45px;" (click)="addDataStepThree()"></button>
+            </div>
+        </div>
+        <div class="row">
+            <p-table [value]="Step_Three_View" selectionMode="single" [(selection)]="Step_Three_View" styleClass="p-datatable-striped" responsiveLayout="scroll" [paginator]="false" style="margin-top: 30px;">
+            
+                <!-- <ng-template pTemplate="header">
+                    
+                </ng-template> -->
+                <ng-template pTemplate="body" let-attachment let-rowIndex="rowIndex">
+                    <tr [pSelectableRow]="Step_Three_View" [pSelectableRowIndex]="rowIndex">
+                        
+                        <td>{{Step_Three_View[rowIndex].email}}</td>
+                        <td style="text-align: right;padding-right: 30px;">{{Step_Three_View[rowIndex].selectedAccess}}<!--<p-dropdown id="txtType" [options]="types" [filter]="true" placeholder="Please select Type" appendTo="body" [(ngModel)]="Step_Three[rowIndex].roleId"></p-dropdown>--></td>
+
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+
+        <div class="row">
+            <p style="font-size: 16px; font-weight: 500; font-family: 'Roboto'; line-height: 24px;"><span style="color: #1199ED;">Info:</span>For More Option Go to Advance Role Management Settings</p>
+        </div>
+
+        <div class="row" style="float:right;">
+            <div class="col-sm-12" style="margin-top: 30px;">
+                <button pButton label="Skip" type="button" class="saveBtnBox" (click)="displayPosition=false" style="background-color: #475569;"></button>
+                <button pButton label="Save & Proceed" type="button" class="saveBtnBox" (click)="hidePopup()" style="width: 200px;"></button>
+            </div>
+        </div>
+    </div>
+
+</p-dialog>
+<!-- End Setup Dialog -->
+
+<div class="progress-spinner" *ngIf="showloader">
+    <p-progressSpinner></p-progressSpinner>
+</div>

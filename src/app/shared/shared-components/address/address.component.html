@@ -1,0 +1,92 @@
+<div class="modal-body">
+    <div class="row">
+        <form>
+            <div class="dash-form">
+              <div class="row">
+                <div class="col-sm-12 col-md-4 p-field">
+                  <label for="country" class="inputLabel">Country <span class="required"></span></label>
+                  <p-dropdown [required]="true" inputId="country" [autoDisplayFirst]="false" [options]="countries" (onChange)="GetStateList($event)" [(ngModel)]="address.country" [ngModelOptions]="{standalone: true}" optionLabel="country" optionValue="country" placeholder="Please select a country"  [filter]="true" [disabled]="address.isdisablecountry ? true:false"></p-dropdown>
+                </div>
+                <div class="col-sm-12 col-md-4 p-field">
+                  <label for="state" class="inputLabel">State <span class="required"></span></label>
+                  <p-dropdown [options]="states" [required]="true" inputId="state" (onChange)="GetCityList($event)" [(ngModel)]="address.state" [ngModelOptions]="{standalone: true}" optionLabel="state" optionValue="state" placeholder="Please select a state" [filter]="true"></p-dropdown>
+                </div>
+                <div class="col-sm-12 col-md-4 p-field">
+                  <label for="city" class="inputLabel">City <span class="required"></span></label>
+                  <p-dropdown (onChange)="onCityChange($event)" [required]="true" inputId="city" [options]="cities" [(ngModel)]="address.city" [ngModelOptions]="{standalone: true}" optionLabel="city" optionValue="city" placeholder="Please select a city" [filter]="true"></p-dropdown>
+                </div>
+                <div class="col-sm-12 col-md-6 p-field addressTextarea">
+                  <label for="addressone" class="inputLabel">Address 1 <span class="required"></span></label>
+                  <textarea [required]="true" inputId="addressone" rows="2" [(ngModel)]="address.address1" [ngModelOptions]="{standalone: true}" pInputTextarea></textarea>
+                </div>
+                <div class="col-sm-12 col-md-6 p-field addressTextarea">
+                  <label for="addresstwo" class="inputLabel">Address 2</label>
+                  <textarea [required]="true" inputId="addresstwo" [(ngModel)]="address.address2" [ngModelOptions]="{standalone: true}" pInputTextarea></textarea>
+                </div>
+                <div class="col-sm-12 col-md-4 p-field">
+                  <label for="pinzip" class="inputLabel">Pin / Zip</label>
+                  <input type="text" id="pinzip" pInputText [(ngModel)]="address.pin" [ngModelOptions]="{standalone: true}">
+                </div>
+              </div>
+                <div class="row">
+                    <!-- <div class="col-sm-6 col-md-4 form-group required input-margin-top">
+                        <span class="p-float-label required">
+                          <p-dropdown [required]="true" inputId="country" [autoDisplayFirst]="false" [options]="countries" (onChange)="GetStateList($event)"
+                              [(ngModel)]="address.country" [ngModelOptions]="{standalone: true}" optionLabel="country" optionValue="country"  [filter]="true" [disabled]="address.isdisablecountry ? true:false"></p-dropdown>
+                          <label for="country">Country</label>
+                        </span>
+                    </div> -->
+                    <!-- <div class="col-sm-6 col-md-4 form-group required input-margin-top">
+                        <span class="p-float-label required">
+                          <p-dropdown [options]="states" [required]="true" inputId="state" (onChange)="GetCityList($event)" [(ngModel)]="address.state" [ngModelOptions]="{standalone: true}" optionLabel="state" optionValue="state" placeholder="Please select a state" [filter]="true"></p-dropdown>
+                          <label for="state">State</label>
+                        </span>
+                    </div> -->
+                    <!-- <div class="col-sm-6 col-md-4 form-group required input-margin-top">
+                        <span class="p-float-label required">
+                            <p-dropdown (onChange)="onCityChange($event)" [required]="true" inputId="city" [options]="cities" [(ngModel)]="address.city" [ngModelOptions]="{standalone: true}" optionLabel="city" optionValue="city" placeholder="Please select a city" [filter]="true"></p-dropdown>
+                            <label for="city">City</label>
+                        </span>
+                    </div> -->
+
+                    <!-- <div class="col-sm-6 col-md-6 form-group required input-margin-top">
+                        <span class="p-float-label required">
+                        <textarea [required]="true" inputId="addressone" rows="2" [(ngModel)]="address.address1" [ngModelOptions]="{standalone: true}"
+                          pInputTextarea
+                        ></textarea>
+                        <label for="addressone">Address 1</label>
+                      </span>
+                    </div> -->
+                    <!-- <div class="col-sm-6 col-md-6 form-group input-margin-top">
+                        <span class="p-float-label">
+                        <textarea [required]="true" inputId="addresstwo" rows="2" [(ngModel)]="address.address2" [ngModelOptions]="{standalone: true}"
+                          pInputTextarea
+                        ></textarea>
+                        <label for="addresstwo">Address 2</label>
+                      </span>
+                    </div> -->
+                    <!-- <div class="col-sm-6 col-md-4 form-group input-margin-top">
+                        <span class="p-float-label">
+                        <input type="text" id="pinzip" pInputText [(ngModel)]="address.pin" [ngModelOptions]="{standalone: true}">
+                        <label for="pinzip">Pin / Zip</label>
+                      </span>
+                    </div> -->
+
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal-footer">
+    <!-- <button pButton pRipple (click)="onClose()" icon="pi pi-times" iconPos="left" label="Cancel" class="p-button-sm p-button-raised p-button-danger p-button-rounded" style="margin-right: 10px;"></button>
+    <button pButton pRipple (click)="onSave()" icon="pi pi-save" iconPos="left" id="btnsaveaddress" data-bs-dismiss="modal" label="Save" class="p-button-sm p-button-raised p-button-success p-button-rounded"></button> -->
+
+    <!-- <button pButton pRipple icon="pi pi-times" iconPos="left" label="Cancel" class="p-button-sm p-button-raised p-button-danger p-button-rounded" (click)="onClose" style="margin-right: 10px;"></button>
+    <button pButton pRipple icon="pi pi-save" iconPos="left" id="btnsaveaddress" data-bs-dismiss="modal" label="Save" class="p-button-sm p-button-raised p-button-success p-button-rounded" (Click)="onSave()"></button> -->
+    <div class="row" style="float: right;margin-top: 60px;">
+      <button pButton type="button" icon="fa-solid fa-xmark fa-lg" iconPos="left" label="Cancel" class="p-button-outlined p-button-danger saveBtnBox" (click)="onClose()"></button>
+      <button pButton icon="fa-solid fa-file-lines fa-lg" iconPos="left" label="Save" type="button" class="saveBtnBox" (click)="onSave()"></button>
+  </div>
+
+</div>

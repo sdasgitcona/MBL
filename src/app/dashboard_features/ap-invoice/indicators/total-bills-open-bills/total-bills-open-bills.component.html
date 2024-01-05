@@ -1,0 +1,18 @@
+<div style="margin-top: 15px;" *ngFor="let card of Cards">
+    <p-card class="cardStyle cardStyle1" [style]="{height: '100px', width:'100%'}" styleClass="shadow-2">
+        <img class="dashboardCardIcon" src="../../../../assets/img/prpr.png">
+        <div class="contentPlace">
+            <!-- <p class="CardHeadPara">Total Bills for AP Invoice
+            </p>
+            <p>{{ card.value2 }}</p> -->
+            <a class="CardHeadPara" [routerLink]="['/main/apinvoice/list']" target="_blank">Total Bills for AP Invoice</a><br>
+            <a class="CardHeadPara" [routerLink]="['/main/apinvoice/list']" target="_blank">{{ card.value2 }}</a>
+        </div>
+        <ng-template pTemplate="footer">
+            <a class="dashboardCardFoo" [routerLink]="['/main/apinvoice/list', 'Draft']" target="_blank">
+                <!-- {{ card.category2}} -->
+                Draft Bills for AP Invoice
+                <span> - {{ card.value1 }}</span></a>
+        </ng-template>
+    </p-card>
+</div>

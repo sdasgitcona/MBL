@@ -1,0 +1,208 @@
+<div class="ng-header">
+    <div class="ng-header-left left">
+        <div class="toggle-menu-button left"></div>
+        <div class="logo right logoright">
+            <!-- <h2 class="logo mr-auto" style="margin-top: 5px;"><a style="color: #464A4D;">Monstarbill : : </a></h2> -->
+            <a class="logo mr-auto" href="#"><img src="../../../../../assets/cimages/logoDark.png" ></a>
+            
+        </div>
+    </div>
+    <div class="ng-header-right right">
+        <div class="ng-header-right-item right" style="margin-top: 2px; margin-right: 5px;">
+            <p-splitButton label="{{user?.subsidiaryName}}" [model]="this.items" styleClass="p-button-text p-button-secondary topbarSplitBtn"></p-splitButton>
+        </div>
+
+        <div class="ng-header-right-item right" style="margin-top: 2px; margin-left: 8px;">
+            <p-avatar image="{{user?.image}}" pBadge  severity="success" styleClass="p-mt-2" size="large" class="userBage"></p-avatar>
+            <!-- ../../assets/cimages/amyelsner.png -->
+           <!-- <p-splitButton label=" {{user?.subsidiaryName}}" icon="../assets/images/login/Logo.png" [model]="this.items" styleClass="p-button-rounded p-button-raised p-button-info p-button-text mr-2 mb-2 topAdmBtn" (onClick)="userdetails.toggle($event)"></p-splitButton> -->
+        </div>
+        
+
+        
+        <!--Start Custom Menu-->
+        <div class="ng-header-right-item right" style="margin-top: 8px;border-right: 1px solid #b6babd; border-top-right-radius: 0px !important; border-bottom-right-radius: 0px !important; padding-right: 8px;">
+            <button pButton pRipple type="button" icon="pi pi-cog" class="p-button-rounded p-button-text" (click)="Setupmenu.toggle($event)"></button>
+        </div>
+        <div class="ng-header-right-item right" style="margin-top: 8px;margin-right: 5px;">
+            <button pButton pRipple type="button" icon="pi pi-building" class="p-button-rounded p-button-text" (click)="Mastermenu.toggle($event)"></button>
+        </div>
+        <div class="ng-header-right-item right" style="margin-top: 8px;margin-right: 5px;">
+            <button pButton pRipple type="button" class="p-button-rounded p-button-text" style="border-right: 1px solid #b6babd; border-top-right-radius: 0px !important; border-bottom-right-radius: 0px !important;">
+                <i class="pi pi-bell p-mr-4 p-text-secondary" pBadge value="2" severity="danger"></i>
+            </button>
+        </div>
+        <div class="ng-header-right-item right" style="margin-top: 8px; display: inline-flex;">
+            <!-- <h6 style="margin: 15px;">Complete Setup (1/3)</h6> -->
+            <div class="circular-progress">
+                <div class="value-container">
+                    <button pButton pRipple type="button" icon="pi pi-window-maximize" class="p-button-rounded p-button-text" (click)="showPositionDialog('top-right')"></button>
+                </div>
+            </div>
+            
+        </div>
+        <!--End Custom Menu-->
+        <div class="ng-header-right-item right" style="margin-top: 2px;" *ngIf="false">
+            <p-splitButton label="Subsidiary: {{user?.subsidiaryName}}"  icon="fa fa-building" [model]="this.subsidiaryList" styleClass="p-button-rounded p-button-raised p-button-info p-button-text mr-2 mb-2 topAdmBtn" ></p-splitButton>
+        </div>
+    </div>
+</div>
+
+<!-- user detials overlay panel -->
+<!-- <p-overlayPanel #userdetails>
+    <div><b>User Name: </b><i [innerHtml]="user?.username"></i></div>
+    <div><b>Role: </b><i [innerHtml]="user?.departmentName"></i></div>
+    <div *ngIf="user?.subsidiaryName!==null"><b>Subsidiary: </b><i [innerHtml]="user?.subsidiaryName"></i></div>
+</p-overlayPanel> -->
+
+
+<p-menu #Mastermenu [popup]="true" [model]="cstmMasterMenu" class="topmenuOverlay"></p-menu>
+<p-menu #Setupmenu [popup]="true" [model]="cstmSetupMenu" class="topmenuOverlay"></p-menu>
+
+
+<!-- Setup Dialog -->
+<p-dialog header="Set Up" [(visible)]="displayPosition" position="top-right" [modal]="true" [style]="{width: '60vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false" class="setUpDialog">
+    <p-steps [model]="setupItems" [(activeIndex)]="activeIndex"></p-steps>
+
+    <!-- Step 1 -->
+    <div activeIndex="0" *ngIf="step1">
+        <div class="row">
+            <div class="col-sm-6 p-field setupF">
+                <label for="textCompanyName" class="inputLabel">Company Name</label>
+                <input type="text" id="textCompanyName"  type="text" pInputText placeholder="Company Name">
+            </div>
+            <div class="col-sm-6 p-field setupF">
+                <label for="txtCountry" class="inputLabel">Country</label>
+                <p-dropdown id="txtCountry" [options]="countryList" optionLabel="name" [filter]="true" optionValue="id" placeholder="Please select Country" appendTo="body"></p-dropdown>
+            </div>
+            <div class="col-sm-6 p-field setupF">
+                <label for="txtState" class="inputLabel">State/Province</label>
+                <p-dropdown id="txtState" [options]="countryList" optionLabel="name" [filter]="true" optionValue="id" placeholder="Please select State/Province" appendTo="body"></p-dropdown>
+            </div>
+            <div class="col-sm-6 p-field setupF">
+                <label for="txtCity" class="inputLabel">City</label>
+                <p-dropdown id="txtCity" [options]="countryList" optionLabel="name" [filter]="true" optionValue="id" placeholder="Please select City" appendTo="body"></p-dropdown>
+            </div>
+            <div class="col-sm-12 p-field setupF">
+                <label for="txtCity" class="inputLabel">Office Address</label>
+                <textarea pInputTextarea placeholder="Address Line 1" ></textarea>
+            </div>
+            <div class="col-sm-12 p-field setupF">
+                <textarea pInputTextarea placeholder="Address Line 2"></textarea>
+            </div>
+            <div class="col-sm-12 p-field setupF">
+                <label for="textpoCode" class="inputLabel">PO Code</label>
+                <input type="text" id="textpoCode"  type="text" pInputText placeholder="PO Code" style="width: 99%;">
+            </div>
+            <div class="col-sm-4 p-field setupF">
+                <label for="txtyear" class="inputLabel">Fiscale Calender</label>
+                <p-dropdown id="txtyear" [options]="countryList" optionLabel="name" [filter]="true" optionValue="id" placeholder="Start year" appendTo="body"></p-dropdown>
+            </div>
+            <div class="col-sm-4 p-field setupF">
+                <label for="txtCity" class="inputLabel"> &nbsp;</label>
+                <p-dropdown id="txtCity" [options]="countryList" optionLabel="name" [filter]="true" optionValue="id" placeholder="Start Month" appendTo="body"></p-dropdown>
+            </div>
+            <div class="col-sm-4 p-field setupF">
+                <label for="txtCity" class="inputLabel"> &nbsp;</label>
+                <p-dropdown id="txtCity" [options]="countryList" optionLabel="name" [filter]="true" optionValue="id" placeholder="End Month" appendTo="body"></p-dropdown>
+            </div>
+            <div class="col-sm-12 p-field setupdialogChip">
+                <label for="txtbussinessUnit" class="inputLabel"> Bussiness Unit</label>
+                <p-chips id="txtbussinessUnit" separator="," placeholder="Type here |"></p-chips>
+                <label>Press Enter or Add Comma after each Bussiness Unit</label>
+            </div>
+            <div class="col-sm-12 p-field setupdialogChip">
+                <label for="txtdepartment" class="inputLabel"> Departments</label>
+                <p-chips id="txtdepartment" separator="," placeholder="Type here |"></p-chips>
+                <label>Press Enter or Add Comma after each Department</label>
+            </div>
+        </div>
+
+        <div class="row" style="float:right;">
+            <div class="col-sm-12" style="height: 90px;">
+                <button pButton label="Skip" type="button" class="saveBtnBox" (click)="displayPosition=false" style="background-color: #475569;"></button>
+                <button pButton label="Next" type="button" class="saveBtnBox" (click)="next()"></button>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- Step 2 -->
+    <div activeIndex="1" *ngIf="step2">
+        <div class="row">
+            <div class="col-sm-12">
+                <p-table  responsiveLayout="scroll" style="min-height:300px;">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Type</th>
+                            <th>Prefix</th>
+                            <th>Suffix</th>
+                            <th>Max Digit</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-address let-rowIndex="rowIndex">
+                        <tr>
+                            <td>Advance Payment</td>
+                            <td>MLES/Adv.PM</td>
+                            <td>/23-24</td>
+                            <td>5</td>
+                            <td>01/11/1022</td>
+                            <td>01/11/2022</td>
+                            <td></td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+
+        <div class="row" style="float:right;">
+            <div class="col-sm-12" style="margin-top: 30px;">
+                <button pButton label="Skip" type="button" class="saveBtnBox" (click)="displayPosition=false" style="background-color: #475569;"></button>
+                <button pButton label="Next" type="button" class="saveBtnBox" (click)="next()"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div activeIndex="2" *ngIf="step3">
+        <div class="row">
+            <div class="col-sm-2 p-field setupF">
+                <label for="textName" class="inputLabel">Name</label>
+                <input type="text" id="textName"  type="text" pInputText placeholder="Name">
+            </div>
+            <div class="col-sm-2 p-field setupF">
+                <label for="textEmail" class="inputLabel">Email</label>
+                <input type="text" id="textEmail"  type="text" pInputText placeholder="Email">
+            </div>
+            <div class="col-sm-2 p-field setupF">
+                <label for="txtBUnit" class="inputLabel">Bussiness Unit</label>
+                <p-dropdown id="txtBUnit" [options]="countryList" optionLabel="name" [filter]="true" optionValue="id" placeholder="Bussiness Unit" appendTo="body"></p-dropdown>
+            </div>
+            <div class="col-sm-2 p-field setupF">
+                <label for="txtDepartmentDrop" class="inputLabel">Department</label>
+                <p-dropdown id="txtDepartmentDrop" [options]="countryList" optionLabel="name" [filter]="true" optionValue="id" placeholder="Department" appendTo="body"></p-dropdown>
+            </div>
+            <div class="col-sm-2 p-field setupF">
+                <label for="txtRoll" class="inputLabel">Role</label>
+                <p-dropdown id="txtRoll" [options]="countryList" optionLabel="name" [filter]="true" optionValue="id" placeholder="Role" appendTo="body"></p-dropdown>
+            </div>
+            <div class="col-sm-2 p-field setupF">
+                <button pButton label="Send Invite" type="button" class="filterBoxBtn" style="margin-top: 45px;"></button>
+            </div>
+        </div>
+        <div class="row">
+            
+        </div>
+        <div class="row" style="float:right;">
+            <div class="col-sm-12" style="margin-top: 30px;">
+                <button pButton label="Skip" type="button" class="saveBtnBox" (click)="displayPosition=false" style="background-color: #475569;"></button>
+                <button pButton label="Save & Proceed" type="button" class="saveBtnBox" (click)="next()" style="width: 200px;"></button>
+            </div>
+        </div>
+    </div>
+
+</p-dialog>
+<!-- End Setup Dialog -->

@@ -1,0 +1,35 @@
+<!-- <p-sidebar [visible]="visible" position="left" [showCloseIcon]="false" styleClass="np-menubar" [modal]="false" >
+    <p-panelMenu [model]="items" [style]="{'width':'230px'}" [multiple]='false'></p-panelMenu>
+</p-sidebar> -->
+<!-- <a class="icon"><i class="fa fa-bars" (click)="toggleSidebar()" style="left: 16px; position: absolute; margin-top: -55px; font-size: 20px;color:#464a4d;"></i></a> -->
+
+<!-- <a class="icon" style="position: fixed;top: 0;padding-top: 2px;left:0;">
+    <i class="fa fa-bars" (click)="toggleSidebar()" style="left: 16px; font-size: 25px;color:#464a4d;z-index: 999999;"></i>
+</a> -->
+
+<a class="icon" style="position: fixed;top: 0;padding-top: 2px;left:0; height: 32px; width: 32px;">
+    <i class="fa fa-bars" (click)="toggleSidebar()" style="position: relative;color: #6B6B6B;width: 15.33px;height: 12.67px;top: 9.66px;left: 8.33px;"></i>
+</a>
+
+<!-- <a class="icon" style="position: fixed;top: 0;padding-top: 2px;"><i class="fa fa-bars" (click)="toggleSidebar()" style="font-size: 25px;color:#464a4d;z-index: 999999;"></i></a> -->
+
+<p-sidebar [visible]="visible" position="left" [showCloseIcon]="false" styleClass="np-menubar" [modal]="false" >
+    
+    <!-- <p-panelMenu [model]="items" [style]="{'width':'230px'}" [multiple]='false'></p-panelMenu> -->
+    <!-- <div class="sidebar" *ngIf="isSidebarOpen"> -->
+    <div class="sidebar" *ngIf="isSidebarOpen">
+        <p-panelMenu [model]="items" [style]="{'width':'230px'}" [multiple]='false'>
+        </p-panelMenu>
+    </div>
+    <div class="sidebarFooter">
+        <a>© 2023 Monstarbill.</a>
+        <button pButton pRipple type="button" icon="fa-solid fa-headset" class="p-button-rounded p-button-secondary p-button-outlined customerServBtn" (click)="showDialog('bottom-left')"></button>
+    </div>
+</p-sidebar>
+
+<!-- To Add Issue -->
+<p-dialog header="Issue" [(visible)]="issuePopup" [position]="position" [style]="{ 'width': '25vw', 'height': '40vw' }" [draggable]="false" [resizable]="false" (onHide)="onDialogHide()">
+    <app-issue-popup-add></app-issue-popup-add>
+</p-dialog>
+
+

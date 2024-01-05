@@ -1,0 +1,32 @@
+<div class="row" style="margin-bottom: 15px;">
+    <div class="fullscreenDivItemWiseReceivedGRN">
+        <div class="col-sm-12">
+            <p-panel header="Item Category Wise Received GRN" [toggleable]="true">
+                <ng-template pTemplate="icons">
+                    <button pButton class="p-panel-header-icon p-link" (click)="toggleFullscreen()"><i
+                            [ngClass]="isFullscreen ? 'pi pi-window-minimize' : 'pi pi-window-maximize'"></i></button>
+                </ng-template>
+                <div class="row">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="calendar-wrapper">
+                                <label for="fromDate">Period :</label>
+                                <p-dropdown [options]="months" [autoDisplayFirst]="false" optionLabel="name" optionValue="code" appendTo="body" [(ngModel)]="selectedMonth" placeholder="Select Date" [filter]="true" (onChange)="updateChart()" style="display: inline-block;"></p-dropdown>
+                              </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="cardView">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div id="chartbarSortItemWiseReceivedGRN" class="chartComponentsPart"
+                                        style="height: 220px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </p-panel>
+        </div>
+    </div>
+</div>

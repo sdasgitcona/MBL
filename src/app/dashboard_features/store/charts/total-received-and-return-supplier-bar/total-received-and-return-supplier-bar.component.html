@@ -1,0 +1,40 @@
+<div class="row" style="margin-bottom: 15px;">
+    <div class="fullscreenDivProjectWiseTotalReceiveAndReturnGRN">
+        <div class="col-sm-12">
+            <p-panel header="Total Receive And Return GRN" [toggleable]="true">
+                <ng-template pTemplate="icons">
+                    <button pButton class="p-panel-header-icon p-link" (click)="toggleFullscreen()"><i
+                            [ngClass]="isFullscreen ? 'pi pi-window-minimize' : 'pi pi-window-maximize'"></i></button>
+                    <!-- <p-menu #menu id="config_menu" [model]="items1" [popup]="true"></p-menu> -->
+                </ng-template>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="cardView">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="row">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="calendar-wrapper">
+                                                    <label for="fromDate">Period :</label>
+                                                    <p-dropdown [options]="months" [autoDisplayFirst]="false" optionLabel="name" optionValue="code" appendTo="body" [(ngModel)]="selectedMonth" [filter]="true" (onChange)="updateChart()" style="display: inline-block;"></p-dropdown>
+                                                  </div>
+                                            </div>
+                                            <!-- <div class="col-sm-6">
+                                                <div class="calendar-wrapper-cluster">
+                                                    <label class="text-right" for="fromDate">Subsidiary :</label>
+                                                    <p-dropdown [options]="subsudiaryCount" [autoDisplayFirst]="false" appendTo="body" [(ngModel)]="selectedSubsudiaryCount" [filter]="true" (onChange)="chk()" style="display: inline-block;"></p-dropdown>
+                                                  </div>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                    <div class="row" id="TotalReceiveAndReturnGRN" class="chartComponentsPart" style="height: 220px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </p-panel>
+        </div>
+    </div>
+</div>

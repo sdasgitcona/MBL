@@ -1,0 +1,27 @@
+<div class="row" style="margin-bottom: 15px;">
+    <div class="fullscreenDivAdvPayApprovalAging">
+        <div class="col-sm-12">
+            <p-panel header="Advance Approval Aging" [toggleable]="true">
+                <ng-template pTemplate="icons">
+                    <button pButton class="p-panel-header-icon p-link" (click)="toggleFullscreenMonthelyAdvanceTrend()"><i [ngClass]="isFullscreen ? 'pi pi-window-minimize' : 'pi pi-window-maximize'"></i></button>
+                    <!-- <p-menu #menu id="config_menu" [model]="items1" [popup]="true"></p-menu> -->
+                </ng-template>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="cardView">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <!-- <div id="totalBills"></div> -->
+                                    <div id="AdvPayApprovalAging" style="height: 230px; width: 100%;"></div>
+                                    <!-- <div id="totalBillsData" style="height: 25px;">
+                                    <p> <span>10000000.00/100000000.00</span></p>
+                                </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </p-panel>
+        </div>
+    </div>
+</div>

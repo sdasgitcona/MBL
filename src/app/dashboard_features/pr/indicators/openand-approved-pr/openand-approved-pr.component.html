@@ -1,0 +1,14 @@
+<div style="margin-top: 15px;" *ngFor="let card of Cards">
+    <p-card class="cardStyle cardStyle1" [style]="{height: '100px', width:'100%'}" styleClass="shadow-2">
+        <img class="dashboardCardIcon" src="../../../../assets/img/prpr.png">
+        <div class="contentPlace">
+            <a class="CardHeadPara" [routerLink]="['/main/purchases-requisition/list', 'Draft']" target="_blank">Draft PR</a><br>
+            <a class="CardHeadPara" [routerLink]="['/main/purchases-requisition/list', 'Draft']" target="_blank">{{ card.value1 }}</a>
+        </div>
+        <ng-template pTemplate="footer">
+            <a class="dashboardCardFoo" [routerLink]="['/main/purchases-requisition/list', 'Approved']" target="_blank">
+                Approved PR
+                <span> - {{ card.value3 }}</span></a>
+        </ng-template>
+    </p-card>
+</div>

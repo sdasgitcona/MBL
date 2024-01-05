@@ -1,0 +1,18 @@
+<div style="margin-top: 15px;" *ngFor="let card of Cards">
+    <p-card class="cardStyle cardStyle6" [style]="{height: '100px', width:'100%'}" styleClass="shadow-2">
+        <img class="dashboardCardIcon" src="../../../../assets/img/Bill.png">
+        <div class="contentPlace">
+            <!-- <p class="CardHeadPara">Total PO
+            </p>
+            <p>{{ card.value1 }}</p> -->
+            <a class="CardHeadPara" [routerLink]="['/main/purchase-order/list']" target="_blank">Total PO</a><br>
+            <a class="CardHeadPara" [routerLink]="['/main/purchase-order/list']" target="_blank">{{ card.value1 }}</a>
+        </div>
+        <ng-template pTemplate="footer">
+            <a class="dashboardCardFoo" [routerLink]="['/main/purchase-order/list', 'Draft']" target="_blank">
+                <!-- {{ card.category2}} -->
+                Draft PO
+                <span> - {{ card.value2 }}</span></a>
+        </ng-template>
+    </p-card>
+</div>

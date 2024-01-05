@@ -1,0 +1,32 @@
+<div class="row" style="margin-bottom: 15px;">
+    <div class="fullscreenDivProjectWiseTotalReceiveAndReturn">
+        <div class="col-sm-12">
+            <p-panel header="Total Receive And Return" [toggleable]="true">
+                <ng-template pTemplate="icons">
+                    <button pButton class="p-panel-header-icon p-link" (click)="toggleFullscreen()"><i
+                            [ngClass]="isFullscreen ? 'pi pi-window-minimize' : 'pi pi-window-maximize'"></i></button>
+                    <!-- <p-menu #menu id="config_menu" [model]="items1" [popup]="true"></p-menu> -->
+                </ng-template>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="cardView">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <p-calendar [(ngModel)]="date" dateFormat="dd.mm.yy" placeholder="From Date"></p-calendar>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <p-calendar [(ngModel)]="date" dateFormat="dd.mm.yy" placeholder="To Date"></p-calendar>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="TotalReceiveAndReturn" class="chartComponentsPart"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </p-panel>
+        </div>
+    </div>
+</div>

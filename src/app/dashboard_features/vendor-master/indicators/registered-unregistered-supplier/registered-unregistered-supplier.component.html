@@ -1,0 +1,20 @@
+<div style="margin-top: 15px;" *ngFor="let card of Cards">
+    <p-card class="cardStyle cardStyle8" [style]="{height: '100px', width:'100%'}" styleClass="shadow-2">
+        <img class="dashboardCardIcon" src="../../../../assets/img/Supplier.png">
+        <div class="contentPlace">
+            <p class="CardHeadPara">Registered Supplier
+                <!-- {{ card.category }} -->
+                <!-- <a class="dashboardCardFoo" [routerLink]="['/main/purchases-requisition/list']" [queryParams]="{status: 'Open'}">{{ card.category }}</a> -->
+            </p>
+            <!-- <p>{{ card.value2 }}</p> -->
+            <p>10</p>
+        </div>
+        <ng-template pTemplate="footer">
+            <a class="dashboardCardFoo" [routerLink]="['/main/supplier/list']" target="_blank">
+                <!-- {{ card.category2}} -->
+                Unregistered Supplier
+                <!-- <span> - {{ card.value1 }}</span></a> -->
+                <span> - 20</span></a>
+        </ng-template>
+    </p-card>
+</div>

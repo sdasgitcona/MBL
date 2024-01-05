@@ -1,0 +1,17 @@
+<div style="margin-top: 15px;" *ngFor="let card of Cards">
+    <p-card class="cardStyle cardStyle2" [style]="{height: '100px', width:'100%'}" styleClass="shadow-2">
+        <img class="dashboardCardIcon" src="../../../../assets/img/transfer.png">
+        <div class="contentPlace">
+            <!-- <p  class="CardHeadPara">PR Priority High </p>
+            <p>{{ card.lowerValue }}</p> -->
+            <a class="CardHeadPara" [routerLink]="['/main/purchases-requisition/list', 'High']" target="_blank">PR Priority High</a><br>
+            <a class="CardHeadPara" [routerLink]="['/main/purchases-requisition/list', 'High']" target="_blank">{{ card.value }}</a>
+        </div>
+        <ng-template pTemplate="footer">
+            <a class="dashboardCardFoo" [routerLink]="['/main/purchases-requisition/list','null']" target="_blank">
+                Negligible PR
+                <!-- {{ card.lowerCategory}} -->
+                <span> - {{ card.lowerValuecat }}</span></a>
+        </ng-template>
+    </p-card>
+</div>

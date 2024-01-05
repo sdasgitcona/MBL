@@ -1,0 +1,6 @@
+<app-top-bar></app-top-bar>
+<div class="ng-content" [ngClass]="{'hidden-menu-content': !isMenuVisible}">
+    <app-side-bar></app-side-bar>
+    <router-outlet></router-outlet>
+</div>
+<!-- <app-footer></app-footer> -->

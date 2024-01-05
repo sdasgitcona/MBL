@@ -1,0 +1,23 @@
+<div class="row" style="margin-bottom: 15px;">
+    <div class="fullscreenDivPOLocation">
+        <div class="col-sm-12">
+            <p-panel header="Location Based PO" [toggleable]="true">
+                <ng-template pTemplate="icons">
+                    <button pButton class="p-panel-header-icon p-link" (click)="toggleFullscreen()"><i [ngClass]="isFullscreen ? 'pi pi-window-minimize' : 'pi pi-window-maximize'"></i></button>
+                    <!-- <p-menu #menu id="config_menu" [model]="items1" [popup]="true"></p-menu> -->
+                </ng-template>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="cardView">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div id="locationWisePO"  class="chartComponentsPart"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </p-panel>
+        </div>
+    </div>
+</div>

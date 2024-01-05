@@ -1,0 +1,39 @@
+<div class="row" style="margin-bottom: 15px;">
+    <div class="fullscreenDivYearWiseRegistration">
+        <div class="col-sm-12">
+            <p-panel header="Year Wise Registration" [toggleable]="true">
+                <ng-template pTemplate="icons">
+                    <button pButton class="p-panel-header-icon p-link" (click)="toggleFullscreen()"><i
+                            [ngClass]="isFullscreen ? 'pi pi-window-minimize' : 'pi pi-window-maximize'"></i></button>
+                    <!-- <p-menu #menu id="config_menu" [model]="items1" [popup]="true"></p-menu> -->
+                </ng-template>
+                <div class="row">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="calendar-wrapper-2">
+                                <label for="fromDate">From Year :</label>
+                                <p-dropdown [options]="years" [autoDisplayFirst]="false" appendTo="body" [(ngModel)]="selectedFromYear" placeholder="Select Date" [filter]="true" (onChange)="updateFromDate()" style="display: inline-block;"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="calendar-wrapper-2">
+                                <label for="fromDate">To Year :</label>
+                                <p-dropdown [options]="years" [autoDisplayFirst]="false" appendTo="body" [(ngModel)]="selectedToYear" placeholder="Select Date" [filter]="true" (onChange)="updateFromDate()" style="display: inline-block;"></p-dropdown>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="cardView">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div id="chartbarSortYearWiseRegistration" class="chartComponentsPart"
+                                        style="height: 220px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </p-panel>
+        </div>
+    </div>
+</div>

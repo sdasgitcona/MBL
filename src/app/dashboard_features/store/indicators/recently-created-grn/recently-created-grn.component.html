@@ -1,0 +1,15 @@
+<div style="margin-top: 15px;" *ngFor="let card of Cards">
+    <p-card class="cardStyle cardStyle7" [style]="{height: '100px', width:'100%'}" styleClass="shadow-2">
+        <img class="dashboardCardIcon" src="../../../../assets/img/aging.png">
+        <div class="contentPlace">
+            <a class="CardHeadPara" [routerLink]="['/main/grn/list', 'Recent']" target="_blank">Recently Created GRN</a><br>
+            <a class="CardHeadPara" [routerLink]="['/main/grn/list', 'Recent']" target="_blank">{{ card.value }}</a>
+        </div>
+        <ng-template pTemplate="footer">
+            <a class="dashboardCardFoo" [routerLink]="['/main/grn/list']" target="_blank">
+                <!-- {{ card.category2}} -->
+                Total GRN
+                <span> - {{ card.value1 }}</span></a>
+        </ng-template>
+    </p-card>
+</div>
