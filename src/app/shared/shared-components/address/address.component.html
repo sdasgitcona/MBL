@@ -17,15 +17,15 @@
                 </div>
                 <div class="col-sm-12 col-md-6 p-field addressTextarea">
                   <label for="addressone" class="inputLabel">Address 1 <span class="required"></span></label>
-                  <textarea [required]="true" inputId="addressone" rows="2" [(ngModel)]="address.address1" [ngModelOptions]="{standalone: true}" pInputTextarea></textarea>
+                  <textarea [required]="true" inputId="addressone" rows="2" [(ngModel)]="address.address1" [ngModelOptions]="{standalone: true}" pInputTextarea placeholder="Address 1"></textarea>
                 </div>
                 <div class="col-sm-12 col-md-6 p-field addressTextarea">
                   <label for="addresstwo" class="inputLabel">Address 2</label>
-                  <textarea [required]="true" inputId="addresstwo" [(ngModel)]="address.address2" [ngModelOptions]="{standalone: true}" pInputTextarea></textarea>
+                  <textarea [required]="true" inputId="addresstwo" [(ngModel)]="address.address2" [ngModelOptions]="{standalone: true}" pInputTextarea placeholder="Address 2"></textarea>
                 </div>
                 <div class="col-sm-12 col-md-4 p-field">
                   <label for="pinzip" class="inputLabel">Pin / Zip</label>
-                  <input type="text" id="pinzip" pInputText [(ngModel)]="address.pin" [ngModelOptions]="{standalone: true}">
+                  <input type="text" id="pinzip" pInputText [(ngModel)]="address.pin" [ngModelOptions]="{standalone: true}" placeholder="Pin / Zip">
                 </div>
               </div>
                 <div class="row">
